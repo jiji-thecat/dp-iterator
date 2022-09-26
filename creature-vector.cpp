@@ -20,5 +20,5 @@ int CreatureVector::getCreatures(){
 }
 
 IteratorInterface* CreatureVector::iterator(){
-  return new CreatureVectorIterator(*this);
+    return new CreatureVectorIterator(*this);
 }

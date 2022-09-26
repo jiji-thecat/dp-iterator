@@ -134,7 +134,7 @@ void MainWindow::listLabelClicked(){
     rabbit1.setFood("carrot");
     cv.add(rabbit1);
 
-    /*Creature alien;
+    Creature alien;
     alien.setName("alien");
     alien.setSound("mohemohe");
     alien.setFood("snail");
@@ -145,7 +145,7 @@ void MainWindow::listLabelClicked(){
     snake.setSound("thhh");
     snake.setFood("egg");
     cv.add(snake);
-    */
+
 
     IteratorInterface *it = cv.iterator();
 

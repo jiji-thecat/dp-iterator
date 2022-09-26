@@ -10,6 +10,8 @@ CONFIG += c++17
 
 SOURCES += \
     clickable-label.cpp \
+    creature-list-iterator.cpp \
+    creature-list.cpp \
     creature-vector-iterator.cpp \
     creature-vector.cpp \
     creature.cpp \
@@ -19,6 +21,8 @@ SOURCES += \
 HEADERS += \
     aggregate-interface.h \
     clickable-label.h \
+    creature-list-iterator.h \
+    creature-list.h \
     creature-vector-iterator.h \
     creature-vector.h \
     creature.h \
