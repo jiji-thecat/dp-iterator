@@ -5,7 +5,7 @@
 #include "creature-list.h"
 
 /**
- * @brief Creature Vector Iterator
+ * @brief Creature List Iterator
  */
 class CreatureListIterator : public IteratorInterface{
   public:

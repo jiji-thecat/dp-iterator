@@ -36,6 +36,7 @@ private:
     void setLabel(const char *imagePath, E_BUTTON button);
     bool isShown = false;
     void clearLayout(QLayout* layout);
+    template <typename TYPE> void generateCreatures(TYPE container, E_BUTTON button);
 
 private slots:
     void makimonoLabelClicked();

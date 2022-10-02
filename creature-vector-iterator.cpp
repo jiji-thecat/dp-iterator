@@ -1,7 +1,7 @@
 #include "creature-vector-iterator.h"
 
 CreatureVectorIterator::CreatureVectorIterator(CreatureVector creatureVector) :
-    _index(0), _creatureVector(creatureVector) {
+   _creatureVector(creatureVector), _index(0) {
 }
 
 bool CreatureVectorIterator::isLast(){

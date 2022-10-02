@@ -1,7 +1,7 @@
 #include "creature-list-iterator.h"
 
 CreatureListIterator::CreatureListIterator(CreatureList creatureList) :
-    _index(0), _creatureList(creatureList) {
+    _creatureList(creatureList), _index(0) {
 }
 
 bool CreatureListIterator::isLast(){

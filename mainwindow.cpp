@@ -1,7 +1,11 @@
+#include <iostream>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "creature.h"
 #include "creature-vector.h"
+#include "creature-list.h"
+#include "creature-char.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -72,33 +76,47 @@ void MainWindow::removeDataFieldLayout(){
     clearLayout(dataFieldLayout);
 }
 
-void MainWindow::makimonoLabelClicked(){
-    if (isShown){
-        removeDataFieldLayout();
+template<typename TYPE> void MainWindow::generateCreatures(TYPE container, E_BUTTON button){
+    const char *containerName = {}; // constの後ろにある*はアドレス変更可、オブジェクト変更不可
+
+    switch (button){
+        case E_BUTTON::MAKIMONO:
+            containerName = "MAKIMONO";
+        break;
+        case E_BUTTON::LIST:
+            containerName = "LIST";
+        break;
+        case E_BUTTON::EKAKI:
+            containerName = "EKAKI";
+        break;
     }
 
-    CreatureVector cv(3);
+    QHBoxLayout *childLayout = new QHBoxLayout;
+    QLabel *label1 = new QLabel(containerName);
+    label1->setStyleSheet("font-weight: bold; color: red");
+    childLayout->addWidget(label1);
+    label1->setAlignment(Qt::AlignTop | Qt::AlignCenter);
+    dataFieldLayout->addLayout(childLayout);
 
     Creature rabbit1;
-    rabbit1.setName("rabbit makimono");
-    rabbit1.setSound("bubu");
-    rabbit1.setFood("carrot");
-    cv.add(rabbit1);
+    rabbit1.setName("うさぎ");
+    rabbit1.setSound("むしゃむしゃ");
+    rabbit1.setFood("にんじん");
+    container.add(rabbit1);
 
     Creature alien;
-    alien.setName("alien");
-    alien.setSound("mohemohe");
-    alien.setFood("snail");
-    cv.add(alien);
+    alien.setName("エイリアン");
+    alien.setSound("ワレワレハ");
+    alien.setFood("牛");
+    container.add(alien);
 
     Creature snake;
-    snake.setName("snake");
-    snake.setSound("thhh");
-    snake.setFood("egg");
-    cv.add(snake);
+    snake.setName("へび");
+    snake.setSound("th th th");
+    snake.setFood("ネズミ");
+    container.add(snake);
 
-
-    IteratorInterface *it = cv.iterator();
+    IteratorInterface *it = container.iterator();
 
     while (it->isLast()) {
       QHBoxLayout *childLayout = new QHBoxLayout;
@@ -119,6 +137,15 @@ void MainWindow::makimonoLabelClicked(){
     }
 
     isShown = true;
+}
+
+void MainWindow::makimonoLabelClicked(){
+    if (isShown){
+        removeDataFieldLayout();
+    }
+
+    CreatureVector cv(3);
+    generateCreatures(cv, E_BUTTON::MAKIMONO);
 }
 
 void MainWindow::listLabelClicked(){
@@ -126,48 +153,8 @@ void MainWindow::listLabelClicked(){
         removeDataFieldLayout();
     }
 
-    CreatureVector cv(3);
-
-    Creature rabbit1;
-    rabbit1.setName("rabbit list");
-    rabbit1.setSound("bubu");
-    rabbit1.setFood("carrot");
-    cv.add(rabbit1);
-
-    Creature alien;
-    alien.setName("alien");
-    alien.setSound("mohemohe");
-    alien.setFood("snail");
-    cv.add(alien);
-
-    Creature snake;
-    snake.setName("snake");
-    snake.setSound("thhh");
-    snake.setFood("egg");
-    cv.add(snake);
-
-
-    IteratorInterface *it = cv.iterator();
-
-    while (it->isLast()) {
-      QHBoxLayout *childLayout = new QHBoxLayout;
-      Creature creature = it->next();
-
-      QString name = QString("Name: %1").arg(creature.getName().c_str());
-      QString sound = QString("Sound: %1").arg(creature.getSound().c_str());
-      QString food = QString("Food: %1").arg(creature.getFood().c_str());
-
-      QLabel *label1 = new QLabel(name);
-      QLabel *label2 = new QLabel(sound);
-      QLabel *label3 = new QLabel(food);
-
-      childLayout->addWidget(label1);
-      childLayout->addWidget(label2);
-      childLayout->addWidget(label3);
-      dataFieldLayout->addLayout(childLayout);
-    }
-
-    isShown = true;
+    CreatureList cl(3);
+    generateCreatures(cl, E_BUTTON::LIST);
 }
 
 void MainWindow::ekakiLabelClicked(){
@@ -175,46 +162,6 @@ void MainWindow::ekakiLabelClicked(){
         removeDataFieldLayout();
     }
 
-    CreatureVector cv(3);
-
-    Creature rabbit1;
-    rabbit1.setName("rabbit ekaki");
-    rabbit1.setSound("bubu");
-    rabbit1.setFood("carrot");
-    cv.add(rabbit1);
-
-    /*Creature alien;
-    alien.setName("alien");
-    alien.setSound("mohemohe");
-    alien.setFood("snail");
-    cv.add(alien);
-
-    Creature snake;
-    snake.setName("snake");
-    snake.setSound("thhh");
-    snake.setFood("egg");
-    cv.add(snake);
-    */
-
-    IteratorInterface *it = cv.iterator();
-
-    while (it->isLast()) {
-      QHBoxLayout *childLayout = new QHBoxLayout;
-      Creature creature = it->next();
-
-      QString name = QString("Name: %1").arg(creature.getName().c_str());
-      QString sound = QString("Sound: %1").arg(creature.getSound().c_str());
-      QString food = QString("Food: %1").arg(creature.getFood().c_str());
-
-      QLabel *label1 = new QLabel(name);
-      QLabel *label2 = new QLabel(sound);
-      QLabel *label3 = new QLabel(food);
-
-      childLayout->addWidget(label1);
-      childLayout->addWidget(label2);
-      childLayout->addWidget(label3);
-      dataFieldLayout->addLayout(childLayout);
-    }
-
-    isShown = true;
+    CreatureChar cc(3);
+    generateCreatures(cc, E_BUTTON::EKAKI);
 }

@@ -17,7 +17,14 @@ Creature CreatureList::getCreatureAt(int index){
 }
 
 void CreatureList::add(Creature creature){
-    _creatures.push_back(creature);
+    auto itr = _creatures.begin();
+
+    for (int i=0; i<=_nCreatures; i++) {
+        itr++;
+    }
+
+    _creatures.insert(itr, creature);
+
     _nCreatures++;
 }
 
