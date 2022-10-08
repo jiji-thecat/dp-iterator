@@ -6,6 +6,9 @@
 #include "creature-list.h"
 #include "creature-char.h"
 
+#include <QDir>
+
+#include <QImage>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -15,9 +18,9 @@ MainWindow::MainWindow(QWidget *parent)
     dataFieldLayout = new QVBoxLayout;
     buttonFieldLayout = new QHBoxLayout;
 
-    setLabel("/Users/jiji/workspace/qt/iterator/iterator/assets/makimono.png", E_BUTTON::MAKIMONO);
-    setLabel("/Users/jiji/workspace/qt/iterator/iterator/assets/list.png", E_BUTTON::LIST);
-    setLabel("/Users/jiji/workspace/qt/iterator/iterator/assets/ekaki.png", E_BUTTON::EKAKI);
+    setLabel(":/images/assets/makimono.png", E_BUTTON::MAKIMONO);
+    setLabel(":/images/assets/list.png", E_BUTTON::LIST);
+    setLabel(":/images/assets/ekaki.png", E_BUTTON::EKAKI);
 
     buttonFieldLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
     dataFieldLayout->setAlignment(Qt::AlignBottom | Qt::AlignCenter);
@@ -34,7 +37,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::setLabel(const char *imagePath, E_BUTTON button){
+void MainWindow::setLabel(const char* imagePath, E_BUTTON button){
     ClickableLabel *label = new ClickableLabel();
     QPixmap *image = new QPixmap(imagePath);
 

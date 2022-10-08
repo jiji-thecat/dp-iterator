@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>assets/makimono.png</file>
+        <file>assets/list.png</file>
+        <file>assets/ekaki.png</file>
+    </qresource>
+</RCC>
