@@ -1,10 +1,32 @@
-# Design Pattern - Iterator
+# Design Pattern - Iterator pattern
 
 ## Description
+
 ![sample](https://private-user-images.githubusercontent.com/104809324/326429339-629b8b16-5dd7-4cf6-bbf9-74a062905933.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQzOTI1ODEsIm5iZiI6MTcxNDM5MjI4MSwicGF0aCI6Ii8xMDQ4MDkzMjQvMzI2NDI5MzM5LTYyOWI4YjE2LTVkZDctNGNmNi1iYmY5LTc0YTA2MjkwNTkzMy5naWY_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwNDI5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDQyOVQxMjA0NDFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iZTZiMjc2NTRiMzc3MDRmNWNiZWY5ZjZiNzdmYzFlZjQ0NDNkNWI2YzRkYTE2NjFjNTAxZmE3ZTk4NTRkYTE1JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.Yz2f0SLsaSUQxtvrT1vADV6189ZKZaTlHTxawVQADlM)
+
+The Iterator pattern is a design pattern used to easily iterate or provide access to a set of data. For example, suppose you have the following datasets:
+
+- 3 items of Animal type stored in a std::vector.
+- 3 items of Animal type stored in a std::list.
+- 3 items of Animal type stored in a double array.
+
+Traditionally, accessing data from these datasets requires writing three different methods. For a std::vector, you would access it via `vector[index]`, but std::list does not support this, so you would need to use a pointer. However, by following the Iterator pattern, implementing a simple iterator will allow for easy access.
+
+### Class diagram
+
+![class diagram](https://private-user-images.githubusercontent.com/104809324/326658229-540224f3-09fd-4851-8985-6a042a056fb7.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQ0NDgzNDAsIm5iZiI6MTcxNDQ0ODA0MCwicGF0aCI6Ii8xMDQ4MDkzMjQvMzI2NjU4MjI5LTU0MDIyNGYzLTA5ZmQtNDg1MS04OTg1LTZhMDQyYTA1NmZiNy5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwNDMwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDQzMFQwMzM0MDBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05YmRlNGZiNzM5NTAzNGYyNTE4YTQzMGNmMDQyMzIwZGJhZjU2NGEwZWY2NzNhOGExMmQ5MTM3ZjJkOTZhMzc1JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.kBUOx7B6XuKV6bBeuwajPtL_gqE3WOiKyTCeOQaHS3U)
+
+The datasets will utilize the Aggregate class, while the accessor will employ the Iterator class as an interface.
+
 ## How to Install and Run
 
+Import this project as a QT project.
+
 ## How to Use This App
+
+![sample](https://private-user-images.githubusercontent.com/104809324/326429339-629b8b16-5dd7-4cf6-bbf9-74a062905933.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQzOTI1ODEsIm5iZiI6MTcxNDM5MjI4MSwicGF0aCI6Ii8xMDQ4MDkzMjQvMzI2NDI5MzM5LTYyOWI4YjE2LTVkZDctNGNmNi1iYmY5LTc0YTA2MjkwNTkzMy5naWY_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwNDI5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDQyOVQxMjA0NDFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iZTZiMjc2NTRiMzc3MDRmNWNiZWY5ZjZiNzdmYzFlZjQ0NDNkNWI2YzRkYTE2NjFjNTAxZmE3ZTk4NTRkYTE1JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.Yz2f0SLsaSUQxtvrT1vADV6189ZKZaTlHTxawVQADlM)
+
+Each image represents different data types (std::vector, std::list, Double array), and it accesses and displays data using the Iterator pattern.
 
 ## License
 
