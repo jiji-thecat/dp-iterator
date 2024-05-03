@@ -15,6 +15,7 @@ Traditionally, accessing data from these datasets requires writing three differe
 ### Class diagram
 
 ![class diagram](https://github.com/jiji-thecat/dp-iterator/assets/104809324/540224f3-09fd-4851-8985-6a042a056fb7)
+[wiki](https://ja.wikipedia.org/wiki/Iterator_%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3)
 
 The datasets will utilize the Aggregate class, while the accessor will employ the Iterator class as an interface.
 
